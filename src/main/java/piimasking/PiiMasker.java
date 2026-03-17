@@ -9,8 +9,6 @@ import dev.langchain4j.service.UserMessage;
 
 public class PiiMasker {
 
-    private static final String API_KEY = "AIzaSyAE2fwfUM-ZHvMAEWvBt5rJLUjxVk6Tn54";
-
     interface MaskingService {
         @SystemMessage("""
             You are a privacy expert. Mask all PII in the user's text 
@@ -24,7 +22,7 @@ public class PiiMasker {
         // Model setup (Gemini, OpenAI, etc.)
 //        OpenAiChatModel model = OpenAiChatModel.withApiKey(API_KEY);
         ChatLanguageModel model = GoogleAiGeminiChatModel.builder()
-                .apiKey(API_KEY) // Google AI Studio se lein
+                .apiKey(System.getenv("GEMINI_API_KEY")) // Google AI Studio se lein
                 .modelName("gemini-2.5-flash")
                 .build();
 
